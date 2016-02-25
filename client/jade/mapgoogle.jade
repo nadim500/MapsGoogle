@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title Mapa Prueba
+    meta(charset="UTF-8")
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&callback=initMap')
+    style(type='text/css').
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #form {
+
+      }
+  body
+    #form
+      label Ingrese direccion:
+      input(type="text" name="escribe")
+    #map
+  script(type='text/javascript').
+    var mapGoogle = document.getElementById('map');
+    var centro = {
+      lat : -12.046775,
+      lng : -77.042820
+    };
+    function initMap() {
+      map = new google.maps.Map(mapGoogle, {
+      center: centro,
+      zoom: 12
+      });
+    }

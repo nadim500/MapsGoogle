@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    title Mapa Prueba
+    meta(charset="UTF-8")
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
+    style(type='text/css').
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #form {
+
+      }
+  body
+    #div
+      label Ingrese nombre:
+      input#input(type="text" name="escribe" placeholder="Ingrese nombre")
+      //button#button Marcar    
+    #map
+  script(type='text/javascript').
+    var markers = new Array();
+    var mapGoogle = document.getElementById('map');
+    var centro = {
+      lat : -12.046775,
+      lng : -77.042820
+    };
+    function initMap() {
+      map = new google.maps.Map(mapGoogle, {
+      center: centro,
+      zoom: 13
+      });
+      var div = document.getElementById('div');
+      var input = document.getElementById('input');
+      var button = document.getElementById('button');
+      map.controls[google.maps.ControlPosition.LEFT_CENTER].push(div);
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autoCompletado(autocomplete,map)
+      //button.addEventListener('click',autoCompletado(autocomplete,map))
+    };
+
+    function autoCompletado(autocomplete,map){
+      console.log("autocomplete: ", autocomplete);
+      autocomplete.bindTo('bounds',map);
+      autocomplete.addListener('place_changed',function(){
+        var place = autocomplete.getPlace();
+        if(!place.geometry){
+          window.alert("Autocomplete's returned place contains no geometry");
+          return;
+        }
+        if(place.geometry.viewport){
+          map.fitBounds(place.geometry.viewport);
+        }else{
+          map.setCenter(place.geometry.location);
+          map.setZoom(13);
+        }
+        addMarcador(map,place);
+      });
+    };
+
+    function addMarcador(map,place){
+      var address = '';
+      console.log('address_components: ',place.address_components);
+      if(place.address_components){
+        address = [
+          (place.address_components[0] && place.address_components[0].short_name || ''),
+          (place.address_components[1] && place.address_components[1].short_name || ''),
+          (place.address_components[2] && place.address_components[2].short_name || '')
+        ].join(' ');
+      }
+      console.log('address: ',address);
+      var content = '<h4>Direccion:</h4><p>'+address+'</p>';
+      var infowindow = new google.maps.InfoWindow({
+        content : content
+      });
+      var mark = new google.maps.Marker({
+        map : map,
+        position : place.geometry.location
+      });
+      markers.push(mark);
+      console.log("markers: ",markers);
+      mark.addListener('click',function(){
+        infowindow.open(mark.get('map'),mark);
+      });
+    };
