@@ -3,6 +3,7 @@ html
   head
     title Mapa Prueba
     meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
     style(type='text/css').
       html, body {
@@ -18,12 +19,18 @@ html
       }
   body
     #div
-      label Ingrese nombre:
-      input#input(type="text" name="escribe" placeholder="Ingrese nombre")
+      form#form(action="/dataGoogle" method="post")
+        label Nombre:
+        input(type="text" placeholder="ingrese nombre")
+        br
+        input#oculto(type="hidden" name="autocompletado")
+        label Ingrese Direccion:
+        input#input(type="text"  placeholder="Ingrese direccion")
+        br
+        input(type="submit" value="Guardar")
       //button#button Marcar    
     #map
   script(type='text/javascript').
-    var markers = new Array();
     var mapGoogle = document.getElementById('map');
     var centro = {
       lat : -12.046775,
@@ -36,7 +43,6 @@ html
       });
       var div = document.getElementById('div');
       var input = document.getElementById('input');
-      var button = document.getElementById('button');
       map.controls[google.maps.ControlPosition.LEFT_CENTER].push(div);
       var autocomplete = new google.maps.places.Autocomplete(input);
       autoCompletado(autocomplete,map)
@@ -48,42 +54,12 @@ html
       autocomplete.bindTo('bounds',map);
       autocomplete.addListener('place_changed',function(){
         var place = autocomplete.getPlace();
+        console.log("place: ",place.geometry.location);
         if(!place.geometry){
           window.alert("Autocomplete's returned place contains no geometry");
           return;
         }
-        if(place.geometry.viewport){
-          map.fitBounds(place.geometry.viewport);
-        }else{
-          map.setCenter(place.geometry.location);
-          map.setZoom(12);
-        }
-        addMarcador(map,place);
-      });
-    };
-
-    function addMarcador(map,place){
-      var address = '';
-      console.log('address_components: ',place.address_components);
-      if(place.address_components){
-        address = [
-          (place.address_components[0] && place.address_components[0].short_name || ''),
-          (place.address_components[1] && place.address_components[1].short_name || ''),
-          (place.address_components[2] && place.address_components[2].short_name || '')
-        ].join(' ');
-      }
-      console.log('address: ',address);
-      var content = '<h4>Direccion:</h4><p>'+address+'</p>';
-      var infowindow = new google.maps.InfoWindow({
-        content : content
-      });
-      var mark = new google.maps.Marker({
-        map : map,
-        position : place.geometry.location
-      });
-      markers.push(mark);
-      console.log("markers: ",markers);
-      mark.addListener('click',function(){
-        infowindow.open(mark.get('map'),mark);
+        var mandarData = JSON.stringify(place)
+        $('#oculto').val(mandarData);
       });
     };

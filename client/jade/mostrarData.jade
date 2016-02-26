@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Mapa Prueba
+    meta(charset="UTF-8")
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
+    style(type='text/css').
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+  body
+    #map
+  script.
+    var mapGoogle = document.getElementById('map');
+    function initMap(){
+      map = new google.maps.Map(mapGoogle,{
+        center : !{location},
+        zoom : 12
+      });
+      var aa = !{location}
+      console.log(typeof(aa));
+      console.log("aa: ",aa);
+      var marker = new google.maps.Marker({
+        map : map,
+        position : !{location}
+      })
+    }
