@@ -1,0 +1,26 @@
+{
+  "name": "Stop",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "direccion": {
+      "type": "string"
+    },
+    "coordenada": {
+      "type": "object"
+    },
+    "nombre": {
+      "type": "string"
+    },
+    "place_id": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

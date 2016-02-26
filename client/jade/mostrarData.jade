@@ -21,27 +21,27 @@ html
             th Nombre
             th Direccion
         tbody
-          tr
-            th prueba
-            th prueba
-          tr
-            th prueba
-            th prueba
+          each stop in objResult_Stop
+            tr
+              th #{stop.nombre}
+              th #{stop.direccion}
     #map
   script.
     var mapGoogle = document.getElementById('map');
-    var place = !{place};
-    console.log("place: ",place);
-    console.log(typeof(place));
+    var string = !{string};
+    var contador = string.length;
+    var markers = new Array();
     function initMap(){
       map = new google.maps.Map(mapGoogle,{
-        center : place.geometry.location,
+        center : string[0].coordenada,
         zoom : 12
       });
       var div = document.getElementById('div');
       map.controls[google.maps.ControlPosition.LEFT_CENTER].push(div);
-      var marker = new google.maps.Marker({
-        map : map,
-        position : place.geometry.location
-      });
+      for(var i = 0;i<contador;i++){
+        var marker = new google.maps.Marker({
+          map : map,
+          position : string[i].coordenada
+        });
+      }
     }
