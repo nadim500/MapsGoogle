@@ -17,16 +17,16 @@ html
     #map
   script.
     var mapGoogle = document.getElementById('map');
+    var place = !{place};
+    console.log("place: ",place);
+    console.log(typeof(place));
     function initMap(){
       map = new google.maps.Map(mapGoogle,{
-        center : !{location},
+        center : place.geometry.location,
         zoom : 12
       });
-      var aa = !{location}
-      console.log(typeof(aa));
-      console.log("aa: ",aa);
       var marker = new google.maps.Marker({
         map : map,
-        position : !{location}
-      })
+        position : place.geometry.location
+      });
     }

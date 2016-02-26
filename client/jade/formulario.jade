@@ -50,7 +50,6 @@ html
     };
 
     function autoCompletado(autocomplete,map){
-      console.log("autocomplete: ", autocomplete);
       autocomplete.bindTo('bounds',map);
       autocomplete.addListener('place_changed',function(){
         var place = autocomplete.getPlace();
@@ -59,7 +58,7 @@ html
           window.alert("Autocomplete's returned place contains no geometry");
           return;
         }
-        var mandarData = JSON.stringify(place)
-        $('#oculto').val(mandarData);
+        place = JSON.stringify(place);
+        $('#oculto').val(place);
       });
     };

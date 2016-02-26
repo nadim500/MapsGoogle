@@ -20,16 +20,11 @@ module.exports = function(app){
 	});
 
 	router.post('/dataGoogle',function(req,res){
-		var data = req.body.autocompletado;
-		data = JSON.parse(data);
-		console.log(typeof(data));
-		console.log('recibido en controller : ', data);
-		var location = data.geometry.location;
-		var pruebaString = JSON.stringify(location)
-		console.log("location : ",location);
-		console.log("pruebaString : ",pruebaString);
+		var place = req.body.autocompletado;
+		console.log(typeof(place));
+		console.log("place: ",place);
 		return res.render('mostrarData',{
-			location : pruebaString
+			place : place
 		});
 	});
 
