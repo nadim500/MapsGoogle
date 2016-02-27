@@ -59,7 +59,14 @@ module.exports = function(app) {
     });
 
     router.get('/mostrarData', function(req, res) {
-        return res.render('mostrarData');
+        Stop.find({},function(err,objResult_Stop){
+            if(err) return res.sendStatus(404);
+            var string = JSON.stringify(objResult_Stop);
+            return res.render('mostrarData',{
+                objResult_Stop : objResult_Stop,
+                string : string
+            });
+        });
     });
 
     app.use(router);

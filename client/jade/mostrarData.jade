@@ -3,6 +3,9 @@ html
   head
     title Mapa Prueba
     meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src='../js/semantic.min.js')
+    link(rel='stylesheet' type='text/css' href='../css/semantic.min.css')
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
     style(type='text/css').
       html, body {
@@ -14,8 +17,10 @@ html
         height: 100%;
       }
   body
-    #div
-      table
+    //  .row
+    //    .column
+    .ui#div
+      table.ui.basic.table
         thead
           tr
             th Nombre
@@ -43,5 +48,6 @@ html
           map : map,
           position : string[i].coordenada
         });
+        markers.push(marker);
       }
     }
