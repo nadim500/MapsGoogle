@@ -1,0 +1,116 @@
+doctype html
+html
+  head
+    title Maquetado
+    meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src='../js/semantic.min.js')
+    link(rel='stylesheet' type='text/css' href='../css/semantic.min.css')
+    style.
+      html,body{
+        height : 100%;
+      }
+      .altura{
+        height : 100%;
+      }
+      .uno{
+        height : 10%;
+      }
+      .dos{
+        height : 10%;
+      }
+      .tres{
+        height : 80%;
+      }
+      #primer{
+        margin-top: 7%;
+        height : 80%;
+      }
+      #button{
+        height : 180%;
+        width : 95%;
+      }
+      #form{
+        margin-top:10%;
+      }
+    
+  body
+    .ui.fixed.inverted.menu
+        .ui.container
+        
+    .ui.container#primer
+      .ui.two.column.celled.grid.altura
+        .seven.wide.column.altura
+          .ui.grid.altura
+            .row.one.centered.column.uno
+              //.centered.column
+              .ui.large.buttons#button(href="/destino")
+                a.ui.button.green
+                  i.flag.icon
+                  | Destinos
+                .or(data-text="O")
+                a.ui.button.black(href="/vehiculo")
+                  i.shipping.icon
+                  | Vehiculos
+              //button.ui.button#button Bienvenido
+            .row.three.column.dos
+              .column
+                a.ui.button#button1(href="/destino/subir")
+                  i.cloud.upload.icon
+                  | Up Destino
+              .column
+                a.ui.button#button1(href="/destino/nuevo")
+                  i.road.icon
+                  | New Destino
+              .column
+                a.ui.button#button1
+                  i.trash.icon
+                  | Borrar Todo
+            .row.one.centered.column.tres
+              .column#form
+                table.ui.basic.table
+                  thead
+                    tr
+                      th Nombre
+                      th Direccion
+                  tbody
+                    each stop in objResult_Stop
+                      tr
+                        th #{stop.nombre}
+                        th #{stop.direccion}
+        .nine.wide.column.altura
+          .altura#map
+  script.
+    var mapGoogle = document.getElementById('map');
+    var map;
+    var string = !{string};
+    var contador = string.length;
+    var markers = new Array();
+    var infowindow;
+    function initMap(){
+      map = new google.maps.Map(mapGoogle,{
+        center : string[0].coordenada,
+        zoom : 12
+      });
+      infowindow = new google.maps.InfoWindow();
+      for(var i = 0;i<contador;i++){
+        addMarker(string[i]);        
+      }
+    }
+    function addMarker(objeto){
+      var marker = new google.maps.Marker({
+        map : map,
+        position : objeto.coordenada
+      });
+      marker.addListener('click', function() {
+          infowindow.setContent(objeto.direccion);
+          infowindow.open(map, marker);
+          console.log("infowindow: ",infowindow);
+      });
+      //- google.maps.event.addListener(marker, 'click', function() {
+      //-     infowindow.setContent(objeto.direccion);
+      //-     infowindow.open(map, marker);
+      //-     console.log("infowindow: ",infowindow);
+      //- });
+    }
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')

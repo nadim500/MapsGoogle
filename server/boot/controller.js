@@ -3,27 +3,36 @@ module.exports = function(app) {
     var Stop = app.models.Stop;
     var router = app.loopback.Router();
 
-    router.get('/', function(req, res) {
-        return res.render('mapgoogle');
+    router.get('/destino/nuevo', function(req, res) {
+        return res.render('destinoNuevo');
     });
 
-    router.get('/1', function(req, res) {
-        return res.render('address');
-    });
-
-    router.get('/2', function(req, res) {
-        return res.render('formulario');
-    });
-
-    router.get('/3', function(req, res) {
-        return res.render('formulario')
+    router.get('/destino', function(req, res) {
+        Stop.find({}, function(err, objResult_Stop) {
+            if (err) return res.sendStatus(404);
+            console.log("objResult_Stop: ", objResult_Stop);
+            var string = JSON.stringify(objResult_Stop);
+            return res.render('destinoPrincipal', {
+                objResult_Stop: objResult_Stop,
+                string: string
+            });
+        });
     });
     
-    router.get('/principal',function(req, res) {
-        res.render('principal');
+    router.get('/destino/subir',function(req,res){
+        return res.render('destinoSubir');
     });
 
-    router.post('/dataGoogle', function(req, res) {
+    router.get('/vehiculo',function(req,res){
+        return res.render('vehiculoPrincipal');
+    });
+
+    router.get('/vehiculo/nuevo',function(req,res){
+        return res.render('vehiculoNuevo');
+    });
+
+
+/*    router.post('/dataGoogle', function(req, res) {
         var place = req.body.autocompletado;
         var nombre = req.body.nombre
         place = JSON.parse(place);
@@ -35,7 +44,7 @@ module.exports = function(app) {
                 place_id: place.place_id
             }
         }, function(err, objResult) {
-        	console.log("objResult en findOne: ",objResult);
+            console.log("objResult en findOne: ", objResult);
             if (err) return res.sendStatus(404);
             else if (objResult == null) {
                 var newStop = {
@@ -57,27 +66,12 @@ module.exports = function(app) {
                     });
                 });
             } else {
-            	return res.render('formulario');
+                return res.render('formulario');
             }
         });
     });
-
-    router.get('/mostrarData', function(req, res) {
-        Stop.find({},function(err,objResult_Stop){
-            if(err) return res.sendStatus(404);
-            var string = JSON.stringify(objResult_Stop);
-            return res.render('mostrarData',{
-                objResult_Stop : objResult_Stop,
-                string : string
-            });
-        });
-    });
-    
-    router.get('/maquetado',function(req,res){
-        res.render('maqueta');
-    });
-    
-    router.post('/maquetadoPost',function(req,res){
+*/
+    router.post('/principalPost', function(req, res) {
         var place = req.body.autocompletado;
         var nombre = req.body.nombre;
         place = JSON.parse(place);
@@ -89,7 +83,7 @@ module.exports = function(app) {
                 place_id: place.place_id
             }
         }, function(err, objResult) {
-        	console.log("objResult en findOne: ",objResult);
+            console.log("objResult en findOne: ", objResult);
             if (err) return res.sendStatus(404);
             else if (objResult == null) {
                 var newStop = {
@@ -104,17 +98,18 @@ module.exports = function(app) {
                         if (err) return res.sendStatus(404);
                         console.log("objResult_Stop: ", objResult_Stop);
                         var string = JSON.stringify(objResult_Stop);
-                        return res.render('listaMaqueta', {
+                        return res.render('destinoPrincipal', {
                             objResult_Stop: objResult_Stop,
                             string: string
                         });
                     });
                 });
             } else {
-            	return res.render('maqueta');
+                return res.render('destino');
             }
-        });      
+        });
     });
-    
+
+
     app.use(router);
 };
