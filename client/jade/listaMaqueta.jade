@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Mapa Prueba
+    title Maquetado
     meta(charset="UTF-8")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
     script(src='../js/semantic.min.js')
@@ -12,25 +12,29 @@ html
         margin: 0;
         padding: 0;
       }
+      .todo {
+        height: 100%;
+      }
+      #map {
+        height: 100%;
+      }
+      
   body
-    //  .row
-    //    .column
-    
-    div(style="position:relative")  
-      #map(style="position:absolute;width:100%;height: 100%; z-index: 1;")
-      .ui.two.column.grid(style:"position:absolute;z-index: 1;")
-        .row
-          .column
-            table.ui.basic.table
-              thead
+  
+    .ui.container.todo
+      .ui.two.column.celled.grid.todo
+        .column.todo
+          table.ui.basic.table
+            thead
+              tr
+                th Nombre
+                th Direccion
+            tbody
+              each stop in objResult_Stop
                 tr
-                  th Nombre
-                  th Direccion
-              tbody
-                each stop in objResult_Stop
-                  tr
-                    th #{stop.nombre}
-                    th #{stop.direccion}
+                  th #{stop.nombre}
+                  th #{stop.direccion}
+        .column.todo#map
   script.
     var mapGoogle = document.getElementById('map');
     var string = !{string};
@@ -41,8 +45,6 @@ html
         center : string[0].coordenada,
         zoom : 12
       });
-      //var div = document.getElementById('div');
-      //map.controls[google.maps.ControlPosition.LEFT].push(div);
       for(var i = 0;i<contador;i++){
         var marker = new google.maps.Marker({
           map : map,

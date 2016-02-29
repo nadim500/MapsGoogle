@@ -1,0 +1,69 @@
+doctype html
+html
+  head
+    title Maquetado
+    meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src='../js/semantic.min.js')
+    link(rel='stylesheet' type='text/css' href='../css/semantic.min.css')
+    style(type='text/css').
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .todo {
+        height: 100%;
+      }
+      #map {
+        height: 100%;
+      }
+      
+  body
+  
+    .ui.container.todo
+      .ui.two.column.celled.grid.todo
+        .column.todo
+          form.ui.form(action="/maquetadoPost" method="post")
+            h4.ui.dividing.header Nuevo destino
+            .field
+              label Nombre
+              input(type="text" name ="nombre" placeholder="Nombre")
+            .field
+              label Direccion
+              input#input(type="text" placeholder="Direccion")
+              input#oculto(type="hidden" name="autocompletado")
+            button.ui.button(href="") Cancelar
+            input.ui.button(type="submit" value="Guardar")
+        .column.todo#map
+  script(type='text/javascript').
+    var mapGoogle = document.getElementById('map');
+    var centro = {
+      lat : -12.046775,
+      lng : -77.042820
+    };
+    function initMap() {
+      map = new google.maps.Map(mapGoogle, {
+      center: centro,
+      zoom: 12
+      });
+      var input = document.getElementById('input');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autoCompletado(autocomplete,map)
+      //button.addEventListener('click',autoCompletado(autocomplete,map))
+    };
+
+    function autoCompletado(autocomplete,map){
+      autocomplete.bindTo('bounds',map);
+      autocomplete.addListener('place_changed',function(){
+        var place = autocomplete.getPlace();
+        console.log("place: ",place.geometry.location);
+        if(!place.geometry){
+          window.alert("Autocomplete's returned place contains no geometry");
+          return;
+        }
+        place = JSON.stringify(place);
+        $('#oculto').val(place);
+      });
+    };
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
