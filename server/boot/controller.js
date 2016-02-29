@@ -3,10 +3,6 @@ module.exports = function(app) {
     var Stop = app.models.Stop;
     var router = app.loopback.Router();
 
-    router.get('/destino/nuevo', function(req, res) {
-        return res.render('destinoNuevo');
-    });
-
     router.get('/destino', function(req, res) {
         Stop.find({}, function(err, objResult_Stop) {
             if (err) return res.sendStatus(404);
@@ -20,7 +16,23 @@ module.exports = function(app) {
     });
     
     router.get('/destino/subir',function(req,res){
-        return res.render('destinoSubir');
+        Stop.find({},function(err,objResult_Stop){
+            if(err) return res.sendStatus(404);
+            var string = JSON.stringify(objResult_Stop);
+            return res.render('destinoSubir',{
+                string : string
+            });
+        });
+    });
+
+    router.get('/destino/nuevo',function(req,res){
+        Stop.find({},function(err,objResult_Stop){
+            if(err) return res.sendStatus(404);
+            var string = JSON.stringify(objResult_Stop);
+            return res.render('destinoNuevo',{
+                string : string
+            });
+        });
     });
 
     router.get('/vehiculo',function(req,res){

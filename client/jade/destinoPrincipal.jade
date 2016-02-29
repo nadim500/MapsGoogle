@@ -30,6 +30,9 @@ html
         height : 180%;
         width : 95%;
       }
+      #button1{
+        width : 105%;
+      }
       #form{
         margin-top:10%;
       }
@@ -44,8 +47,8 @@ html
           .ui.grid.altura
             .row.one.centered.column.uno
               //.centered.column
-              .ui.large.buttons#button(href="/destino")
-                a.ui.button.green
+              .ui.large.buttons#button
+                a.ui.button.green(href="/destino")
                   i.flag.icon
                   | Destinos
                 .or(data-text="O")
@@ -55,13 +58,13 @@ html
               //button.ui.button#button Bienvenido
             .row.three.column.dos
               .column
-                a.ui.button#button1(href="/destino/subir")
+                a.ui.button(href="/destino/subir" style="width: 110%;")
                   i.cloud.upload.icon
-                  | Up Destino
+                  | Subir Destino
               .column
-                a.ui.button#button1(href="/destino/nuevo")
+                a.ui.button(href="/destino/nuevo" style="width: 115%;")
                   i.road.icon
-                  | New Destino
+                  | Nuevo Destino
               .column
                 a.ui.button#button1
                   i.trash.icon
@@ -82,15 +85,23 @@ html
           .altura#map
   script.
     var mapGoogle = document.getElementById('map');
+    var centro = {
+      lat : -12.046775,
+      lng : -77.042820
+    };
     var map;
     var string = !{string};
     var contador = string.length;
-    var markers = new Array();
     var infowindow;
     function initMap(){
       map = new google.maps.Map(mapGoogle,{
-        center : string[0].coordenada,
-        zoom : 12
+        center : centro,
+        zoom : 12,
+        mapTypeControl : false,
+        streetViewControl : false,
+        zoomControlOptions : {
+          position : google.maps.ControlPosition.RIGHT_TOP
+        }
       });
       infowindow = new google.maps.InfoWindow();
       for(var i = 0;i<contador;i++){

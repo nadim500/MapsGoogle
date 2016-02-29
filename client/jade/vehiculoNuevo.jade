@@ -58,13 +58,13 @@ html
               //button.ui.button#button Bienvenido
             .row.three.column.dos
               .column
-                a.ui.button#button1
-                  i.cloud.upload.icon
-                  | Up Destino
-              .column
-                a.ui.button(href="/vehiculo/nuevo" style="width:110%;")
+                a.ui.button(href="/destino/subir" style="width: 118%;")
                   i.add.circle.icon
-                  | New Vehiculo
+                  | Nuevo Vehiculo
+              .column
+                a.ui.button(href="/destino/nuevo" style="width: 118%;")
+                  i.ellipsis.vertical.icon
+                  | Seleccionar
               .column
                 a.ui.button#button1
                   i.trash.icon
@@ -84,6 +84,33 @@ html
                   input.ui.button(type="submit" value="Guardar")
         .nine.wide.column.altura
           .altura#map
+
+    .ui.small.basic.modal
+      i.close.icon
+      .ui.icon.header
+        i.trash.icon
+        | Eliminar Destinos
+      .content
+        p(style="text-align:center;") ¿Esta seguro de eliminar todos los destinos?
+      .actions
+        .ui.red.cancel.inverted.button
+          i.remove.icon
+          | No
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          | Si
+
+  script.
+    $('#button1').on('click',function(){
+      $(".ui.basic.modal")
+      .modal({
+        onApprove : function(){
+        
+        }
+      })
+      .modal('show');
+    });
+
   script(type='text/javascript').
     var mapGoogle = document.getElementById('map');
     var centro = {
@@ -93,7 +120,12 @@ html
     function initMap() {
       map = new google.maps.Map(mapGoogle, {
       center: centro,
-      zoom: 12
+      zoom: 12,
+      mapTypeControl : false,
+        streetViewControl : false,
+        zoomControlOptions : {
+          position : google.maps.ControlPosition.RIGHT_TOP
+        }
       });
       var input = document.getElementById('input');
       var autocomplete = new google.maps.places.Autocomplete(input);

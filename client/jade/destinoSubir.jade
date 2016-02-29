@@ -34,7 +34,7 @@ html
         width : 105%;
       }
       #form{
-        margin-top:10%;
+        margin-top:9%;
       }
     
   body
@@ -47,8 +47,8 @@ html
           .ui.grid.altura
             .row.one.centered.column.uno
               //.centered.column
-              .ui.large.buttons#button(href="/destino")
-                a.ui.button.green
+              .ui.large.buttons#button
+                a.ui.button.green(href="/destino")
                   i.flag.icon
                   | Destinos
                 .or(data-text="O")
@@ -58,30 +58,20 @@ html
               //button.ui.button#button Bienvenido
             .row.three.column.dos
               .column
-                a.ui.button#button1(href="/destino/subir")
+                a.ui.button(href="/destino/subir" style="width: 110%;")
                   i.cloud.upload.icon
-                  | Up Destino
+                  | Subir Destino
               .column
-                a.ui.button#button1(href="/destino/nuevo")
+                a.ui.button(href="/destino/nuevo" style="width: 115%;")
                   i.road.icon
-                  | New Destino
+                  | Nuevo Destino
               .column
                 a.ui.button#button1
                   i.trash.icon
                   | Borrar Todo
             .row.one.centered.column.tres
-              .column#form
-                form.ui.form(action="/principalPost" method="post")
-                  h4.ui.dividing.header Nuevo destino
-                  .field
-                    label Nombre
-                    input(type="text" name ="nombre" placeholder="Nombre")
-                  .field
-                    label Direccion
-                    input#input(type="text" placeholder="Direccion")
-                    input#oculto(type="hidden" name="autocompletado")
-                  button.ui.button(href="") Cancelar
-                  input.ui.button(type="submit" value="Guardar")
+              .column#form(style="height : 100%;background : #aa9e9e;")
+                
         .nine.wide.column.altura
           .altura#map
   script(type='text/javascript').
@@ -90,28 +80,34 @@ html
       lat : -12.046775,
       lng : -77.042820
     };
+    var map;
+    var string = !{string};
+    var contador = string.length;
+    var infowindow;
+
     function initMap() {
       map = new google.maps.Map(mapGoogle, {
       center: centro,
-      zoom: 12
-      });
-      var input = document.getElementById('input');
-      var autocomplete = new google.maps.places.Autocomplete(input);
-      autoCompletado(autocomplete,map)
-      //button.addEventListener('click',autoCompletado(autocomplete,map))
-    };
-
-    function autoCompletado(autocomplete,map){
-      autocomplete.bindTo('bounds',map);
-      autocomplete.addListener('place_changed',function(){
-        var place = autocomplete.getPlace();
-        console.log("place: ",place.geometry.location);
-        if(!place.geometry){
-          window.alert("Autocomplete's returned place contains no geometry");
-          return;
+      zoom: 12,
+      mapTypeControl : false,
+        streetViewControl : false,
+        zoomControlOptions : {
+          position : google.maps.ControlPosition.RIGHT_TOP
         }
-        place = JSON.stringify(place);
-        $('#oculto').val(place);
       });
-    };
+      infowindow = new google.maps.InfoWindow();
+      for(var i=0;i<contador;i++){
+        addMarker(string[i]);
+      }
+    }
+    function addMarker(objeto){
+      var marker = new google.maps.Marker({
+        map : map,
+        position : objeto.coordenada
+      });
+      marker.addListener('click',function(){
+        infowindow.setContent(objeto.direccion);
+        infowindow.open(map,marker);
+      });
+    }
   script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')
