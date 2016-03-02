@@ -7,7 +7,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 app.set('json spaces',2);
-app.set('views',path.resolve(__dirname,'../client/jade'));
+app.set('views',path.resolve(__dirname,'../client/cligo'));
 app.set('view engine','jade');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

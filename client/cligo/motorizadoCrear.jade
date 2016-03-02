@@ -1,0 +1,142 @@
+doctype html
+html
+  head
+    title Crear Motorizado
+    meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src='../js/semantic.min.js')
+    link(rel='stylesheet' type='text/css' href='../css/semantic.min.css')
+    style.
+      html,body{
+        height : 100%;
+        margin : 0 ;
+      }
+      #login{
+        height : 10%;
+        margin : 0;
+      }
+      #menu{
+        height : 7%;
+        margin : 0;
+      }
+      #map{
+        height : 83%;
+        border : 1px solid green;
+        z-index : 1;
+      }
+      #volador{
+        border : 2px solid gray;
+        width : 30%;
+        height : 75%;
+        background : white;
+        position : absolute;
+        left : 2%;
+        top : 22%;
+        z-index : 2;
+      }
+      img#cligo{
+        height : 80%;
+      }
+      img{
+        cursor : pointer;
+      }
+      .item#first{
+        width : 40%;
+      }
+      #zero{
+        height : 100%;
+        margin : 0;
+      }
+  body
+    .ui.container.fluid#volador
+      .ui.grid#zero
+        .ui.centered.row(style="height : 10%")
+          h4.ui.header
+            img(src="../css/vehicleEnVolador.png")
+            .content Motorizados
+        .ui.row(style="height : 9%;padding : 0;")
+          .ui.right.aligned.container.fluid
+            .ui.button
+              i.add.square.icon
+              | Agregar
+        .ui.row(style="height : 72%;background : #f3f3f3;")
+          .column
+            form.ui.form
+              h4.ui.dividing.header Nuevo Motorizado
+              .field
+                label Nombre :
+                input(type="text" placeholder="Nombre")
+              .field
+                label Direccion:
+                input(type="text" placeholder="Direccion")
+              .field
+                label Celular :
+                input(type="text" placeholder="Celular")
+              .field
+                label Capacidad:
+                input(type="text" placeholder="Capacidad")
+        .ui.row(style="height : 9%;padding : 0%")
+          .ui.center.aligned.container.fluid
+            .ui.button
+              i.remove.icon
+              | Cancelar
+            .ui.button
+              i.save.icon
+              | Guardar
+
+    .ui.stackable.menu#login
+      .ui.fluid.container
+        a
+          img#cligo(src="../css/cligo.png")
+        .ui.right.labeled.icon.menu
+          a.item
+              i.user.icon
+              | Usuario 
+          //.item
+          a.item
+            i.add.circle.icon
+            | Nueva ruta
+    .ui.stackable.menu#menu
+      .ui.fluid.container
+        .item
+          img#1(src="../css/locationred.png")
+          | Origen
+        .item
+          img#2(src="../css/transport.png")
+          |   Motorizados
+        .right.menu
+          .item
+            .ui.button Resumen 
+          .item
+            .ui.button.blue Ruta optima
+    #map
+  script.
+    $("#1")
+      .popup({
+        hoverable: true,
+        title : 'Direccion de recojo'
+      });
+    $("#2")
+      .popup({
+        hoverable: true,
+        title : 'Direccion de motorizado'
+      });
+  script.
+    var mapGoogle = document.getElementById('map');
+    var centro = {
+      lat : -12.046775,
+      lng : -77.042820
+    };
+    var map;
+    function initMap(){
+      map = new google.maps.Map(mapGoogle,{
+      center: centro,
+      zoom: 12,
+      mapTypeControl : false,
+        streetViewControl : false,
+        zoomControlOptions : {
+          position : google.maps.ControlPosition.RIGHT_TOP
+        }
+      });
+    }
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')

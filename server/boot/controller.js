@@ -1,9 +1,13 @@
-module.exports = function(app) {
+/*module.exports = function(app) {
 
     var Stop = app.models.Stop;
     var router = app.loopback.Router();
 
-    router.get('/',function(req,res){
+    router.get('/inicio',function(req,res){
+        res.render('inicio');
+    });
+
+    rouwter.get('/',function(req,res){
         res.redirect('/destino');
     });
 
@@ -138,4 +142,4 @@ module.exports = function(app) {
     })
 
     app.use(router);
-};
+};*/
