@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    title Mapa Prueba
+    meta(charset="UTF-8")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
+    script(src='../js/semantic.min.js')
+    link(rel='stylesheet' type='text/css' href='../css/semantic.min.css')
+    style(type='text/css').
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+  body
+    //  .row
+    //    .column
+    .ui#div
+      table.ui.basic.table
+        thead
+          tr
+            th Nombre
+            th Direccion
+        tbody
+          each stop in objResult_Stop
+            tr
+              th #{stop.nombre}
+              th #{stop.direccion}
+    #map
+  script.
+    var mapGoogle = document.getElementById('map');
+    var string = !{string};
+    var contador = string.length;
+    var markers = new Array();
+    function initMap(){
+      map = new google.maps.Map(mapGoogle,{
+        center : string[0].coordenada,
+        zoom : 12
+      });
+      var div = document.getElementById('div');
+      map.controls[google.maps.ControlPosition.LEFT_CENTER].push(div);
+      for(var i = 0;i<contador;i++){
+        var marker = new google.maps.Marker({
+          map : map,
+          position : string[i].coordenada
+        });
+        markers.push(marker);
+      }
+    }
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB6f88fRxA9xODuXZ78cPpR6o8nU8dE_lk&signed_in=true&libraries=places&callback=initMap')

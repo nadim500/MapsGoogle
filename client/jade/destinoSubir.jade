@@ -74,6 +74,32 @@ html
                 
         .nine.wide.column.altura
           .altura#map
+
+    .ui.small.basic.modal
+      i.close.icon
+      .ui.icon.header
+        i.trash.icon
+        | Eliminar Destinos
+      .content
+        p(style="text-align:center;") ¿Esta seguro de eliminar todos los destinos?
+      .actions
+        .ui.red.cancel.inverted.button
+          i.remove.icon
+          | No
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          | Si
+
+  script.
+    $('#button1').on('click',function(){
+      $(".ui.basic.modal")
+      .modal({
+        onApprove : function(){
+        
+        }
+      })
+      .modal('show');
+    });
   script(type='text/javascript').
     var mapGoogle = document.getElementById('map');
     var centro = {

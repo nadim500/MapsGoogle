@@ -17,6 +17,9 @@
     },
     "place_id": {
       "type": "string"
+    },
+    "tipo":{
+      "type": "string"
     }
   },
   "validations": [],
