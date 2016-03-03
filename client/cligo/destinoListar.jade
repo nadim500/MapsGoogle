@@ -36,9 +36,8 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 160px;
       }
-      img{
+      img,#icon{
         cursor : pointer;
       }
       .item#first{
@@ -59,11 +58,11 @@ html
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.active.item
+            a.active.item(href="/recojo/listar")
               h4.ui.header
                 img(src="../css/location-deactivate.png")
                 .content(style="color: #A0AEB8;") Recojo
-            a.item#activate
+            a.item#activate(href="#")
               h4.ui.header
                 img(src="../css/flag-map-marker.png")
                 .content Destinos
@@ -72,7 +71,7 @@ html
             .ui.button
               i.trash.icon
               | Eliminar Todo
-            .ui.button
+            a.ui.button(href="/destino/crear")
               i.add.square.icon
               | Agregar
         .ui.row(style="height : 71%;background : #f3f3f3;overflow: scroll;")
@@ -91,9 +90,9 @@ html
                   th PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono 
                   th
                     a
-                      i.write.icon
+                      i.write.icon#icon
                     a    
-                      i.trash.icon
+                      i.trash.icon#icon
                 tr
                   th PruebaNombre
                   th PruebaDireccion
@@ -132,14 +131,14 @@ html
             | Nueva ruta
     .ui.stackable.menu#menu
       .ui.fluid.container
-        .item
+        a.item(href="/recojo/listar")
           img#1(src="../css/locationred.png")
           | Origen
-        .item
+        a.item(href="/motorizado/listar")
           img#2(src="../css/transport.png")
-          |   Motorizados
+          | Motorizados
         .right.menu
-          .item
+          a.item(href="/resumen/recojo")
             .ui.button Resumen 
           .item
             .ui.button.blue Ruta optima

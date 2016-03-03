@@ -36,7 +36,6 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 160px;
       }
       img{
         cursor : pointer;
@@ -65,39 +64,39 @@ html
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.active.item
+            a.active.item(href="/recojo/listar")
               h4.ui.header
                 img(src="../css/location-deactivate.png")
                 .content(style="color: #A0AEB8;") Recojo
-            a.item#activate
+            a.item#activate(href="#")
               h4.ui.header
                 img(src="../css/flag-map-marker.png")
                 .content Destinos
         .ui.centered.row#secondMenu
           p Tiene que ingresar destino(s) para el punto de recojo. Click 
-            a(href="") aqui
+            a(href="/destino/crear") aqui
 
     .ui.stackable.menu#login
       .ui.fluid.container
         img#cligo(src="../css/cligo.png")
         .ui.right.labeled.icon.menu
           a.item
-              i.user.icon
-              | Usuario 
+            i.user.icon
+            | Usuario 
           //.item
           a.item
             i.add.circle.icon
             | Nueva ruta
     .ui.stackable.menu#menu
       .ui.fluid.container
-        .item
+        a.item(href="/recojo/listar")
           img#1(src="../css/locationred.png")
           | Origen
-        .item
+        a.item(href="/motorizado/listar")
           img#2(src="../css/transport.png")
           |   Motorizados
         .right.menu
-          .item
+          a.item(href="/resumen/recojo")
             .ui.button Resumen 
           .item
             .ui.button.blue Ruta optima

@@ -36,7 +36,6 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 160x;
       }
       img{
         cursor : pointer;
@@ -64,17 +63,17 @@ html
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.item#activate
+            a.item#activate(href="/recojo/listar")
               h4.ui.header
                 img(src="../css/location-volador.png")
                 .content Recojo
-            a.active.item
+            a.active.item(href="/destino/listar")
               h4.ui.header
                 img(src="../css/flag-map-deactivate.png")
                 .content(style="color: #A0AEB8;") Destinos
         .ui.centered.row#secondMenu
           p Tienes que ingresar un punto de recojo. Click 
-            a(href="") aqui
+            a(href="/recojo/crear") aqui
 
     .ui.stackable.menu#login
       .ui.fluid.container
@@ -89,14 +88,14 @@ html
             | Nueva ruta
     .ui.stackable.menu#menu
       .ui.fluid.container
-        .item
+        a.item(href="/recojo/listar")
           img#1(src="../css/locationred.png")
           | Origen
-        .item
+        a.item(href="/destino/listar")
           img#2(src="../css/transport.png")
-          |   Motorizados
+          | Motorizados
         .right.menu
-          .item
+          a.item(href="/resumen/recojo")
             .ui.button Resumen 
           .item
             .ui.button.blue Ruta optima

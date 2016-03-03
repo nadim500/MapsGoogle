@@ -36,7 +36,6 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 160px;
       }
       img{
         cursor : pointer;
@@ -59,17 +58,17 @@ html
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.item#activate
+            a.item#activate(href="/recojo/listar")
               h4.ui.header
                 img(src="../css/location-volador.png")
                 .content Recojo
-            a.active.item
+            a.active.item(href="/destino/listar")
               h4.ui.header
                 img(src="../css/flag-map-deactivate.png")
                 .content(style="color: #A0AEB8;") Destinos
         .ui.row(style="height : 9%;padding : 0;margin-top:1%;")
           .ui.right.aligned.container.fluid
-            .ui.button
+            a.ui.button(href="/recojo/crear")
               i.add.square.icon
               | Agregar
         .ui.row(style="height : 72%;background : #f3f3f3;")
@@ -90,10 +89,10 @@ html
                 input(type="text" placeholder="Telefono")
         .ui.row(style="height : 9%;padding : 0%")
           .ui.center.aligned.container.fluid
-            .ui.button
+            a.ui.button(href="/recojo")
               i.remove.icon
               | Cancelar
-            .ui.button
+            a.ui.button
               i.save.icon
               | Guardar
 
@@ -102,22 +101,22 @@ html
         img#cligo(src="../css/cligo.png")
         .ui.right.labeled.icon.menu
           a.item
-              i.user.icon
-              | Usuario 
+            i.user.icon
+            | Usuario 
           //.item
           a.item
             i.add.circle.icon
             | Nueva ruta
     .ui.stackable.menu#menu
       .ui.fluid.container
-        .item
+        a.item(href="/recojo/listar")
           img#1(src="../css/locationred.png")
           | Origen
-        .item
+        a.item(href="/motorizado/listar")
           img#2(src="../css/transport.png")
           |   Motorizados
         .right.menu
-          .item
+          a.item(href="/resumen/recojo")
             .ui.button Resumen 
           .item
             .ui.button.blue Ruta optima
