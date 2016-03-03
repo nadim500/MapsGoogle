@@ -47,6 +47,9 @@ html
         height : 100%;
         margin : 0;
       }
+      #icon{
+        background : 
+      }
   body
     .ui.container.fluid#volador
       .ui.grid#zero
@@ -63,6 +66,24 @@ html
               i.add.square.icon
               | Agregar
         .ui.row(style="height : 72%;background : #f3f3f3;")
+          .ui.container(style="padding-left : 3%;padding-right : 3%;")
+            table.ui.fixed.table(style="text-align:center;")
+              thead
+                tr
+                  th Nombre
+                  th Direccion
+                  th Telefono
+                  th aa
+              tbody
+                tr
+                  th PruebaNombre
+                  th PruebaDireccion
+                  th PruebaTelefono
+                  th
+                    a
+                      i.write.icon#icon
+                    a    
+                      i.trash.icon#icon
         .ui.row(style="height : 9%;padding : 0%;margin:1%;")
           .ui.center.aligned.container.fluid
             .ui.fluid.button.blue
