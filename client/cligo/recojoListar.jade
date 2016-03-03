@@ -36,7 +36,7 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 140px;
+        width : 160px;
       }
       img{
         cursor : pointer;
@@ -48,19 +48,25 @@ html
         height : 100%;
         margin : 0;
       }
+      #activate{
+        border-style : outset;
+        border-top-style : none;
+        border-left-style : none;
+        border-color: gray;
+      }
   body
     .ui.container.fluid#volador
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.item
+            a.item#activate
               h4.ui.header
-                img(src="../css/vehicleEnVolador.png")
+                img(src="../css/location-volador.png")
                 .content Recojo
-            a.item
+            a.active.item
               h4.ui.header
-                img(src="../css/vehicleEnVolador.png")
-                .content Destinos
+                img(src="../css/flag-map-deactivate.png")
+                .content(style="color: #A0AEB8;") Destinos
         .ui.row(style="height : 9%;padding : 0;margin-top:1%;")
           .ui.center.aligned.container.fluid
             .ui.button
@@ -69,7 +75,7 @@ html
             .ui.button
               i.add.square.icon
               | Agregar
-        .ui.row(style="height : 72%;background : #f3f3f3;")
+        .ui.row(style="height : 71%;background : #f3f3f3;")
           .ui.container(style="padding-left : 3%;padding-right : 3%;")
             table.ui.fixed.table(style="text-align:center;")
               thead
@@ -88,7 +94,7 @@ html
                       i.write.icon
                     a    
                       i.trash.icon
-        .ui.row(style="height : 9%;padding : 0%;margin:1%;")
+        .ui.row(style="height :10%;padding : 0%;margin:1%;")
           .ui.center.aligned.container.fluid
             .ui.fluid.button.blue
               i.checkmark.box.icon
@@ -96,8 +102,7 @@ html
 
     .ui.stackable.menu#login
       .ui.fluid.container
-        a
-          img#cligo(src="../css/cligo.png")
+        img#cligo(src="../css/cligo.png")
         .ui.right.labeled.icon.menu
           a.item
               i.user.icon

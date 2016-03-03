@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Inicio
+    title Listar Destino
     meta(charset="UTF-8")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js")
     script(src='../js/semantic.min.js')
@@ -25,7 +25,7 @@ html
         z-index : 1;
       }
       #volador{
-        border : 1px solid red;
+        border : 2px solid gray;
         width : 30%;
         height : 75%;
         background : white;
@@ -35,7 +35,8 @@ html
         z-index : 2;
       }
       img#cligo{
-        height : 80%;
+        height : 64px;
+        width : 160px;
       }
       img{
         cursor : pointer;
@@ -47,16 +48,80 @@ html
         height : 100%;
         margin : 0;
       }
+      #activate{
+        border-style : outset;
+        border-top-style : none;
+        border-right-style : none;
+        border-color: gray;
+      }
   body
     .ui.container.fluid#volador
       .ui.grid#zero
-        .ui.row(style="height : 10%")
-        .ui.row(style="height : 90%")
+        .ui.centered.row(style="height : 10%;padding:0;")
+          .ui.two.item.menu
+            a.active.item
+              h4.ui.header
+                img(src="../css/location-deactivate.png")
+                .content(style="color: #A0AEB8;") Recojo
+            a.item#activate
+              h4.ui.header
+                img(src="../css/flag-map-marker.png")
+                .content Destinos
+        .ui.row(style="height : 9%;padding : 0;margin-top:1%;")
+          .ui.center.aligned.container.fluid
+            .ui.button
+              i.trash.icon
+              | Eliminar Todo
+            .ui.button
+              i.add.square.icon
+              | Agregar
+        .ui.row(style="height : 71%;background : #f3f3f3;overflow: scroll;")
+          .ui.container(style="padding-left : 3%;padding-right : 3%;")
+            table.ui.fixed.table(style="text-align:center;")
+              thead
+                tr
+                  th Nombre
+                  th Direccion
+                  th Telefono
+                  th aa
+              tbody
+                tr
+                  th PruebaNombre
+                  th PruebaDireccion
+                  th PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono 
+                  th
+                    a
+                      i.write.icon
+                    a    
+                      i.trash.icon
+                tr
+                  th PruebaNombre
+                  th PruebaDireccion
+                  th PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono 
+                  th
+                    a
+                      i.write.icon
+                    a    
+                      i.trash.icon
+                tr
+                  th PruebaNombre
+                  th PruebaDireccion
+                  th PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono PruebaTelefono 
+                  th
+                    a
+                      i.write.icon
+                    a    
+                      i.trash.icon
+
+        .ui.row(style="height :10%;padding : 0%;margin:1%;")
+          .ui.center.aligned.container.fluid
+            .ui.fluid.button.blue
+              i.checkmark.box.icon
+              | Aceptar
 
     .ui.stackable.menu#login
       .ui.fluid.container
-        a
-          img#cligo(src="../css/cligo.png")
+        img#cligo(src="../css/cligo.png")
         .ui.right.labeled.icon.menu
           a.item
               i.user.icon

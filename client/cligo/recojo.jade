@@ -36,7 +36,7 @@ html
       }
       img#cligo{
         height : 64px;
-        width : 140px;
+        width : 160x;
       }
       img{
         cursor : pointer;
@@ -53,21 +53,27 @@ html
         height : 90%;
         align-items : center;
       }
+      #activate{
+        border-style : outset;
+        border-top-style : none;
+        border-left-style : none;
+        border-color: gray;
+      }
   body
     .ui.container.fluid#volador
       .ui.grid#zero
         .ui.centered.row(style="height : 10%;padding:0;")
           .ui.two.item.menu
-            a.item
+            a.item#activate
               h4.ui.header
-                img(src="../css/vehicleEnVolador.png")
+                img(src="../css/location-volador.png")
                 .content Recojo
-            a.item
+            a.active.item
               h4.ui.header
-                img(src="../css/vehicleEnVolador.png")
-                .content Destinos
+                img(src="../css/flag-map-deactivate.png")
+                .content(style="color: #A0AEB8;") Destinos
         .ui.centered.row#secondMenu
-          p Tiene que ingresar un punto de recojo. Click 
+          p Tienes que ingresar un punto de recojo. Click 
             a(href="") aqui
 
     .ui.stackable.menu#login
