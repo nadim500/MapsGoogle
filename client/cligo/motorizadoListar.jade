@@ -35,7 +35,8 @@ html
         z-index : 2;
       }
       img#cligo{
-        height : 80%;
+        height : 64px;
+        width : 140px;
       }
       img{
         cursor : pointer;
@@ -46,9 +47,6 @@ html
       #zero{
         height : 100%;
         margin : 0;
-      }
-      #icon{
-        background : 
       }
   body
     .ui.container.fluid#volador
@@ -81,9 +79,9 @@ html
                   th PruebaTelefono
                   th
                     a
-                      i.write.icon#icon
+                      i.write.icon
                     a    
-                      i.trash.icon#icon
+                      i.trash.icon
         .ui.row(style="height : 9%;padding : 0%;margin:1%;")
           .ui.center.aligned.container.fluid
             .ui.fluid.button.blue
@@ -92,8 +90,7 @@ html
 
     .ui.stackable.menu#login
       .ui.fluid.container
-        a
-          img#cligo(src="../css/cligo.png")
+        img#cligo(src="../css/cligo.png")
         .ui.right.labeled.icon.menu
           a.item
               i.user.icon
